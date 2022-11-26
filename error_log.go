@@ -15,11 +15,12 @@ var _ error = Log(nil)
 
 // Log adds an error to the log if nonnil.
 func (l *Log) Log(err error) bool {
-	if err != nil {
-		*l = append(*l, err)
-		return true
+	if err == nil {
+		return false
 	}
-	return false
+
+	*l = append(*l, err)
+	return true
 }
 
 // Error returns a combined error message.
